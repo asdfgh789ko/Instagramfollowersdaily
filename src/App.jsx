@@ -16,6 +16,8 @@ function App() {
 
   const [showError, setShowError] = useState("");
 
+  const [passOrText, setPassOrText] = useState("password");
+
 
 
 
@@ -112,7 +114,17 @@ function App() {
               <div>
                 <input className='user' type="text" placeholder='Username' value={userName} onChange={userNameFunction} onBlur={userBlur} />
                 <p className='perror'>{userNameError}</p>
-                <input className='password' type="password" placeholder='Password' value={Password} onChange={PasswordFunction} onBlur={PasswordBlur} />
+                <div className='password-container'>
+                  <input className='password' type={passOrText} placeholder='Password' value={Password} onChange={PasswordFunction} onBlur={PasswordBlur} /> <button className='show-btn' type="button" onClick={() => {
+                    const passwordInput = document.querySelector('.password');
+                    if (passwordInput.type === "password") {
+                      passwordInput.type = "text";
+                    } else {
+                      passwordInput.type = "password";
+                    }
+                    setPassOrText(prev => prev === "password" ? "text" : "password");
+                  }}>{passOrText === "password" ? "Show" : "Hide"}</button>
+                </div>
                 <p className='perror'>{PasswordError}</p>
               </div>
               <div>

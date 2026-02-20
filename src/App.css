@@ -113,3 +113,14 @@
 .paa{
   padding: 10px;
 }
+
+.show-btn{
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #646cffbb;
+  border: none;
+  outline: none;
+  border-width: 0px;
+  cursor: pointer;
+}
